@@ -44,12 +44,6 @@ try:
         streamlit.dataframe(back_from_function)
 except URLError as e:
     streamlit.error()
-
-#streamlit.write('The user entered ', fruit_choice)
-#Dont run anything past here while we troubleshoot
-streamlit.stop()
-
-
 streamlit.header("The fruit load list contains:")
 my_cur = my_cnx.cursor()
 #Snowflake-related functions
@@ -63,8 +57,10 @@ if streamlit.button('Get Fruit Load List'):
     my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
     my_data_rows = get_fruit_load_list()
     streamlit.dataframe(my_data_rows)
-
-
+    
+#streamlit.write('The user entered ', fruit_choice)
+#Dont run anything past here while we troubleshoot
+streamlit.stop()
 
 
 #New Section to add new box
